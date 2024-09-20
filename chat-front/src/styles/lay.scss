@@ -1,0 +1,199 @@
+$left-panel-bg-color: #ffffff;
+$chat-field-bg-color: #ffcaca;
+$chat-msg-color: #b6a9a9;
+$button-color: #111111;
+
+$base-border-radius: 1rem;
+
+$left-panel-width: 26rem;
+$info-panel-height: 3.3rem;
+
+$input-bg: white;
+$input-height: 4rem;
+$input-width: 100%;
+$input-bottom-margin: 1rem;
+
+$send-button-size: calc($input-height - 0.3rem);
+
+$bounds-width: 60%;
+
+$border-base-info-left: 1px grey solid;
+
+.dev-flex-temp {
+  display: flex;
+}
+
+.left-panel {
+  background-color: $left-panel-bg-color;
+  height: 100svh;
+  width: $left-panel-width;
+
+  &_chats-container {
+    background-color: grey;
+  }
+
+  &_head-content {
+    height: $info-panel-height;
+  }
+}
+
+.msg {
+  background-color: white;
+  border-radius: $base-border-radius;
+  border: 1px solid grey;
+
+  display: flex;
+
+  padding: 0.1rem 1rem 0.1rem 0.5rem;
+  margin-bottom: 0.4rem;
+
+  min-width: 3rem;
+  width: fit-content;
+
+  &_img {
+    background-color: darkgray;
+
+    border-radius: 50%;
+
+    width: 2.1rem;
+    height: 2.1rem;
+
+    margin-right: 0.5rem;
+
+    align-self: center;
+  }
+
+  &_container {
+  }
+
+  &_name {
+  }
+
+  &_body {
+  }
+}
+
+.msg-fullWidth {
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+
+  // background-color: $chat-field-bg-color;
+  width: calc(100svw - #{$left-panel-width});
+  height: calc(100svh - #{$input-bottom-margin});
+
+  &_info {
+    background-color: $left-panel-bg-color;
+    height: $info-panel-height;
+    -webkit-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  }
+}
+
+.removeButton {
+  height: fit-content;
+  width: fit-content;
+  background-color: red;
+}
+
+.backgroundImage {
+  height: 100svh;
+  width: inherit;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  height: $input-height;
+  width: calc($bounds-width - $send-button-size);
+  background-color: $input-bg;
+
+  border-radius: $base-border-radius;
+
+  border: 1px black solid;
+
+  padding: 0.8rem;
+
+  display: flex;
+  align-items: center;
+
+  &_element {
+    height: calc($input-height - 2rem);
+    width: 100%;
+
+    border: 0px; //цвет рамки
+    background: #ffffff !important; // желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым
+    outline: none; // удаляет обводку в браузерах хром(желтая) и сафари(синяя)
+    font-size: 16px; // Размер шрифта
+  }
+
+  &_send-button {
+    border: 1px solid black;
+    align-self: center;
+    width: $send-button-size;
+    height: $send-button-size;
+    border-radius: 50%;
+    margin-left: 0.2rem;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+}
+
+.chat-outer {
+  height: calc(100% - $info-panel-height);
+  overflow-y: scroll;
+  border-right: $border-base-info-left;
+
+  &_chatElement {
+    padding: 1rem 0.2rem 0.2rem 1rem;
+
+    height: 4rem;
+    border-radius: $base-border-radius;
+
+    &:hover {
+      background-color: red;
+    }
+  }
+}
+
+.msgs-container {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+  height: calc(100svh - #{$info-panel-height + $input-height});
+
+  &_bounds {
+    overflow-y: scroll;
+    height: calc(
+      100svh - #{$info-panel-height + $input-height + $input-bottom-margin}
+    );
+    width: $bounds-width;
+  }
+}
+
+$scrollbar-width: 0.3rem;
+
+*::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: 2em;
+}
+*::-webkit-scrollbar-button {
+  background: #ccc;
+
+  display: none;
+}
+*::-webkit-scrollbar-track-piece {
+  background: #888;
+  display: none;
+}
+*::-webkit-scrollbar-thumb {
+  background: #eee;
+}

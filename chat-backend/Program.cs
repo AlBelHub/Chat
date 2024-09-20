@@ -15,7 +15,9 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        
 
+        
         builder.Services.AddDbContext<ChatContext>();
 
         var app = builder.Build();
@@ -26,12 +28,19 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
+        
+        app.UseCors(opt =>
+        {
+            opt.WithOrigins("http://localhost:5173")
+                .WithMethods("GET", "POST")
+                .WithHeaders("authorization", "accept", "content-type", "origin");
+        });
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
-
+        
+        
+        
         app.MapControllers();
 
         app.Run();

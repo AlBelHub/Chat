@@ -105,3 +105,4 @@
 /home/aleksey/code/Chat_Fullstack/chat-backend/obj/Debug/net8.0/ref/chat-backend.dll
 /home/aleksey/code/Chat_Fullstack/chat-backend/bin/Debug/net8.0/Nanoid.dll
 /home/aleksey/code/Chat_Fullstack/chat-backend/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/home/aleksey/code/Chat_Fullstack/chat-backend/obj/Debug/net8.0/chat-backend.sourcelink.json

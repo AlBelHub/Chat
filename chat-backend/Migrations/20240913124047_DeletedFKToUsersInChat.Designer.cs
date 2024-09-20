@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Chat.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace chat_backend.Migrations
 {
     [DbContext(typeof(ChatContext))]
-    partial class ChatContextModelSnapshot : ModelSnapshot
+    [Migration("20240913124047_DeletedFKToUsersInChat")]
+    partial class DeletedFKToUsersInChat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,10 +32,6 @@ namespace chat_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("text")
                         .HasColumnOrder(0);
-
-                    b.Property<string>("ChatName")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<DateTime>("createdAt")
                         .HasColumnType("timestamp with time zone");

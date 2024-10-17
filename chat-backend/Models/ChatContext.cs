@@ -11,7 +11,7 @@ public class ChatContext : DbContext
     public DbSet<Message> Messages { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=mydb2;Username=efcore2;Password=efcore2");
+        => optionsBuilder.UseNpgsql("Host=172.17.0.1;Database=mydb2;Username=efcore2;Password=efcore2");
 
     public class User
     {

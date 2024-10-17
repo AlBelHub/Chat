@@ -16,7 +16,7 @@ export default function ChatField({ chatId }) {
   const [msg, setMsg] = useState<Message[]>();
 
   const RemoveChat = () => {
-    fetch(`http://localhost:5154/Chat/removeChat?chatId=${chatId}`, {
+    fetch(`http://localhost:5174/Chat/removeChat?chatId=${chatId}`, {
       method: "POST",
     })
       .then((resp) => resp.json())
@@ -24,7 +24,7 @@ export default function ChatField({ chatId }) {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5154/Chat/getChatMsgs?chatID=${chatId}`, {
+    fetch(`http://localhost:5174/Chat/getChatMsgs?chatID=${chatId}`, {
       method: "GET",
     })
       .then((resp) => resp.json())
@@ -46,7 +46,7 @@ export default function ChatField({ chatId }) {
   //signalR
 
   const connection = new HubConnectionBuilder()
-    .withUrl("http://localhost:5154/hub", {
+    .withUrl("http://localhost:5174/hub", {
       skipNegotiation: true,
       transport: HttpTransportType.WebSockets,
     })

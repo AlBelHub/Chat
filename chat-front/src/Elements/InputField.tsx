@@ -17,7 +17,7 @@ export default function InputField({ chatId, connection }: InputProps) {
     console.log(inputElement?.value);
 
     fetch(
-      `http://localhost:5154/Chat/addMsg?chatId=${chatId}&userId=${userId}`,
+      `http://localhost:5174/Chat/addMsg?chatId=${chatId}&userId=${userId}`,
       {
         method: "POST",
         body: `"${inputElement?.value}"`,
@@ -38,7 +38,7 @@ export default function InputField({ chatId, connection }: InputProps) {
         e.preventDefault();
 
         fetch(
-          `http://localhost:5154/Chat/addMsg?chatId=${chatId}&userId=${userId}`,
+          `http://localhost:5174/Chat/addMsg?chatId=${chatId}&userId=${userId}`,
           {
             method: "POST",
             body: `"${e.target.value}"`,

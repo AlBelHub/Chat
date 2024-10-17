@@ -19,7 +19,7 @@ export default function LeftPanel() {
   }, []);
 
   const fetchChats = (): void => {
-    fetch("http://localhost:5154/Chat/getChats", {
+    fetch("http://localhost:5174/Chat/getChats", {
       method: "GET",
     })
       .then((resp) => resp.json())
@@ -33,7 +33,7 @@ export default function LeftPanel() {
     }
 
     fetch(
-      `http://localhost:5154/Chat/createChat?OwnerId=5064817829&chatName=${ChatName}`,
+      `http://localhost:5174/Chat/createChat?OwnerId=5064817829&chatName=${ChatName}`,
       {
         method: "POST",
       }

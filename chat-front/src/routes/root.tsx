@@ -11,7 +11,7 @@ export default function Root() {
   const [users, setUsers] = useState<User[]>();
 
   useEffect(() => {
-    fetch("http://localhost:5154/User/get", {
+    fetch("http://localhost:5174/User/get", {
       method: "GET",
     })
       .then((resp) => resp.json())

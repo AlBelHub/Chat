@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { useState, useEffect } from "react";
 import { Chat } from "../Types/types";

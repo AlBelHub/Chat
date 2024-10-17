@@ -1,0 +1,21 @@
+<div className="users">
+                    {users && 
+                        users.map(user => (
+                            <div className="users-container" key={user.id}>
+                                <p>{user.id}</p>
+                                <p>{user.username}</p>
+                            </div>
+                            
+
+                        ))
+                    }
+                </div>
+
+
+
+
+                fetch(`http://localhost:5154/Chat/getChatMsgs?chatID=${selectedChat?.id}`, 
+            {
+                method: "GET",
+            }
+        ).then(resp => resp.json()).then(res => setMsg(res) );

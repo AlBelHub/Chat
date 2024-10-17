@@ -1,10 +1,16 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import { useState, useEffect } from "react";
 import { Chat, Message } from "../Types/types";
 import "../styles/lay.scss";
 import InputField from "./InputField";
 import ChatMessage from "./ChatMessage";
+
+import {
+  HttpTransportType,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
 
 export default function ChatField({ chatId }) {
   const [msg, setMsg] = useState<Message[]>();
@@ -34,27 +40,59 @@ export default function ChatField({ chatId }) {
     }
   }, [msg]);
 
+  const chatIdMemo = useMemo(() => chatId, [chatId]);
+  const msgMemo = useMemo(() => msg, [msg]);
+
+  //signalR
+
+  const connection = new HubConnectionBuilder()
+    .withUrl("http://localhost:5154/hub", {
+      skipNegotiation: true,
+      transport: HttpTransportType.WebSockets,
+    })
+    .build();
+
+  connection.on("ReceiveMsg", (hmsg) => {
+    console.log(hmsg)
+    setMsg(
+      [
+        ...msg,
+        {
+          body: hmsg
+        }
+      ]
+    )
+  });
+
+  connection
+    .start()
+    .catch((err) => console.log("HUB ERROR: " + err));
+
+  //=======
+
   return (
     <div className="backgroundImage">
       <div className="chat-container">
         <div className="chat-container_info">
           <p>{chatId}</p>
-          <div className="removeButton" onClick={() => RemoveChat()}>remove</div>
+          <div className="removeButton" onClick={() => RemoveChat()}>
+            remove
+          </div>
         </div>
 
         <div className="msgs-container">
           <div className="msgs-container_bounds" ref={divScrollRef}>
             {chatId && (
               <>
-                {msg?.map((msg) => (
-                  <ChatMessage msg={msg} key={msg.id} />
+                {msgMemo?.map((msgMemo) => (
+                  <ChatMessage msg={msgMemo} key={msgMemo.id} />
                 ))}
               </>
             )}
           </div>
         </div>
 
-        <InputField chatId={chatId} />
+        <InputField chatId={chatIdMemo} connection={connection} />
       </div>
     </div>
   );

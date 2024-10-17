@@ -4,6 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './error-page.tsx'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const router = createBrowserRouter([
   {
@@ -13,9 +14,12 @@ const router = createBrowserRouter([
   }
 ])
 
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 )

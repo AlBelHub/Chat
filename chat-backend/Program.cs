@@ -1,4 +1,5 @@
 
+using chat_backend.Hub;
 using Chat.DB;
 
 namespace chat_backend;
@@ -15,8 +16,8 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        
 
+        builder.Services.AddSignalR();
         
         builder.Services.AddDbContext<ChatContext>();
 
@@ -38,8 +39,8 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-        
-        
+
+        app.MapHub<ChatHub>("/hub");
         
         app.MapControllers();
 
